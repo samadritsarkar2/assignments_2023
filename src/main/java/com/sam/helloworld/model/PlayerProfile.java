@@ -1,4 +1,4 @@
-package com.sam.helloworld.controller.model;
+package com.sam.helloworld.model;
 
 
 import lombok.Data;
@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class PlayerProfile {
 
-    private int id;
+    private long playerId;
     private String name;
 
     private int totalRuns;

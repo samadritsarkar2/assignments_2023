@@ -1,4 +1,6 @@
-package com.sam.helloworld.controller.model;
+package com.sam.helloworld.model;
+
+import com.sam.helloworld.enums.Country;
 
 import java.util.List;
 
@@ -7,6 +9,7 @@ public class Team {
 
     private List<Integer> allPlayers;
 
+    private Country country;
 
 
 }
