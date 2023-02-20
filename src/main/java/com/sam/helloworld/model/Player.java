@@ -1,13 +1,15 @@
 package com.sam.helloworld.model;
 
+import com.sam.helloworld.enums.BattingStatus;
+
 public class Player {
 
     private long playerId;
 
 
-    //TODO: add enums BattingScore & BowlingScore
-    int currBattingScore;
-    int currBowlingScore;
+
+    private BattingStatus currBattingScore;
+    private BowlingStats currBowlingScore;
 
 
 }
