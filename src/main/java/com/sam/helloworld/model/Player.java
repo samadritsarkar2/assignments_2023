@@ -8,7 +8,7 @@ public class Player {
 
 
 
-    private BattingStatus currBattingScore;
+    private BattingStats currBattingScore;
     private BowlingStats currBowlingScore;
 
 
