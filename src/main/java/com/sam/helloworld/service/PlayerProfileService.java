@@ -1,6 +1,7 @@
 package com.sam.helloworld.service;
 
 import com.sam.helloworld.model.PlayerProfile;
+import com.sam.helloworld.repository.PlayerProfileRepository;
 import com.sam.helloworld.repository.PlayerProfileRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ public class PlayerProfileService {
 
 
     @Autowired
-    private PlayerProfileRepositoryImpl playerProfileRepository;
+    private PlayerProfileRepository playerProfileRepository;
 
 
     public PlayerProfile addPlayer(PlayerProfile newPlayer){

@@ -2,6 +2,7 @@ package com.sam.helloworld.repository;
 
 import com.sam.helloworld.model.PlayerProfile;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.mongodb.core.FindAndModifyOptions;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -14,7 +15,8 @@ import java.util.List;
 
 
 @Repository
-public class PlayerProfileRepositoryImpl {
+@Primary
+public class PlayerProfileRepositoryImpl implements PlayerProfileRepository {
     @Autowired
     private MongoTemplate mongoTemplate;
 
