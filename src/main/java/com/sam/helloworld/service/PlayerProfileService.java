@@ -19,6 +19,7 @@ public class PlayerProfileService {
 
 
     public PlayerProfile addPlayer(PlayerProfile newPlayer){
+
         return playerProfileRepository.addPlayer(newPlayer);
 
     }
@@ -27,16 +28,19 @@ public class PlayerProfileService {
     }
 
     public PlayerProfile getPlayer(int playerId){
+
         return playerProfileRepository.getPlayer(playerId);
+    }
+
+    public List<PlayerProfile> searchPlayers(String str) {
+        List<PlayerProfile> listOfPlayers = playerProfileRepository.searchPlayers(str);
+        return listOfPlayers;
     }
 
     public List<PlayerProfile> getAllPlayers(){
         return playerProfileRepository.getAllPlayers();
     }
 
-    public List<PlayerProfile> searchPlayers(String str) {
-        return playerProfileRepository.searchPlayers(str);
-    }
     public PlayerProfile updatePlayerName(int playerId, String newName) {
         return playerProfileRepository.updatePlayerName(playerId,newName);
     }

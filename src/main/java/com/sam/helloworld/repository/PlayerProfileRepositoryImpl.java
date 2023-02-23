@@ -26,6 +26,7 @@ public class PlayerProfileRepositoryImpl implements PlayerProfileRepository {
     }
 
     public Collection<PlayerProfile> addPlayers(List<PlayerProfile> newPlayers){
+
        return mongoTemplate.insertAll(newPlayers);
     }
 
@@ -39,7 +40,7 @@ public class PlayerProfileRepositoryImpl implements PlayerProfileRepository {
     }
 
     public List<PlayerProfile> searchPlayers(String str){
-        Query query = new Query().addCriteria(Criteria.where("name").is(str));
+        Query query = new Query().addCriteria(Criteria.where("name").regex(str));
         return mongoTemplate.find(query, PlayerProfile.class);
     }
 
