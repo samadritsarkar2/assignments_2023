@@ -5,6 +5,7 @@ import com.sam.helloworld.service.PlayerProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -23,8 +24,13 @@ public class PlayerProfileController {
     }
 
     @PostMapping("/addMany")
-    public List<PlayerProfile> addManyPlayers(@RequestBody List<PlayerProfile> playersList){
+    public Collection<PlayerProfile> addManyPlayers(@RequestBody List<PlayerProfile> playersList){
         return playerProfileService.addPlayers(playersList);
+    }
+
+    @GetMapping("/{playerId}")
+    public PlayerProfile getPlayer(@PathVariable int playerId){
+        return playerProfileService.getPlayer(playerId);
     }
 
     @GetMapping("/search")
@@ -38,14 +44,14 @@ public class PlayerProfileController {
         return playerProfileService.getAllPlayers();
     }
 
-    @PostMapping("/updateName")
+    @PutMapping("/updateName")
     public PlayerProfile updatePlayerProfile(@RequestParam int id, @RequestParam String newName){
 
         return playerProfileService.updatePlayerName(id, newName);
 
     }
 
-    @PostMapping("/delete")
+    @DeleteMapping("/delete")
     public PlayerProfile deletePlayer(@RequestParam int id){
         return playerProfileService.deletePlayer(id);
     }

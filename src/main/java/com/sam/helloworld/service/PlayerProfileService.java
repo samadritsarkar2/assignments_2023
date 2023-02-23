@@ -1,50 +1,47 @@
 package com.sam.helloworld.service;
 
 import com.sam.helloworld.model.PlayerProfile;
-import com.sam.helloworld.repository.CustomPlayerProfileRepository;
-import com.sam.helloworld.repository.PlayerProfileRepository;
+import com.sam.helloworld.repository.PlayerProfileRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.FindAndModifyOptions;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 
 @Service
 public class PlayerProfileService {
 
+
     @Autowired
-    private PlayerProfileRepository playerProfileRepository;
-    @Autowired
-    private CustomPlayerProfileRepository customPlayerProfileRepository;
+    private PlayerProfileRepositoryImpl playerProfileRepository;
 
 
     public PlayerProfile addPlayer(PlayerProfile newPlayer){
-        return playerProfileRepository.insert(newPlayer);
+        return playerProfileRepository.addPlayer(newPlayer);
 
     }
-    public List<PlayerProfile> addPlayers(List<PlayerProfile> playersList){
-        return playerProfileRepository.saveAll(playersList);
+    public Collection<PlayerProfile> addPlayers(List<PlayerProfile> playersList){
+        return playerProfileRepository.addPlayers(playersList);
     }
+
+    public PlayerProfile getPlayer(int playerId){
+        return playerProfileRepository.getPlayer(playerId);
+    }
+
     public List<PlayerProfile> getAllPlayers(){
-        return playerProfileRepository.findAll();
+        return playerProfileRepository.getAllPlayers();
     }
 
     public List<PlayerProfile> searchPlayers(String str) {
-        return playerProfileRepository.findByName(str);
+        return playerProfileRepository.searchPlayers(str);
     }
     public PlayerProfile updatePlayerName(int playerId, String newName) {
-        return customPlayerProfileRepository.updatePlayerName(playerId,newName);
+        return playerProfileRepository.updatePlayerName(playerId,newName);
     }
 
     public PlayerProfile deletePlayer(int playerId){
-
-//        PlayerProfile deletedPlayer = playerProfileRepository.findById(playerId).get();
-        return playerProfileRepository.deleteById2(playerId);
+        return playerProfileRepository.deletePlayer(playerId);
     }
 
 }

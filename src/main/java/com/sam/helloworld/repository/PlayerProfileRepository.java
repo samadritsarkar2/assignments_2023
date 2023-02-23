@@ -1,21 +1,22 @@
 package com.sam.helloworld.repository;
 
 import com.sam.helloworld.model.PlayerProfile;
-import org.springframework.data.mongodb.repository.DeleteQuery;
-import org.springframework.data.mongodb.repository.MongoRepository;
 
+import java.util.Collection;
 import java.util.List;
 
-public interface PlayerProfileRepository extends MongoRepository<PlayerProfile,Integer> {
+public interface PlayerProfileRepository {
 
+    public PlayerProfile addPlayer(PlayerProfile newPlayer);
 
-    @DeleteQuery("{playerId : ?0}")
-    public PlayerProfile deleteById2(int id);
+    public Collection<PlayerProfile> addPlayers(List<PlayerProfile> newPlayer);
 
-//    @Query("{playerId : ?0}")
-//    @Update("{$set : {'name' : ?1}}")
-//    public void upsert(int playerId,String name);
+    public List<PlayerProfile> getAllPlayers();
 
-    public List<PlayerProfile> findByName(String name);
+    public List<PlayerProfile> searchPlayers(String str);
+
+    public PlayerProfile updatePlayerName(int playerId, String newName);
+
+    public PlayerProfile deletePlayer(int playerId);
 
 }
