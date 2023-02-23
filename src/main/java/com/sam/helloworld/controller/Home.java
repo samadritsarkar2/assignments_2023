@@ -13,9 +13,8 @@ public class Home {
 
     @Value("${server1.name}")
     private String n;
-//    @GetMapping(path = "/")
-//    public String home(){
-//        user.setName(n);
-//        return user.getName();
-//    }
+    @GetMapping(path = "/")
+    public String home(){
+        return "Home";
+    }
 }
