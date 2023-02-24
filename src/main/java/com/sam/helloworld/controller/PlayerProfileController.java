@@ -1,9 +1,11 @@
 package com.sam.helloworld.controller;
 
+import com.sam.helloworld.dto.request.ListPlayerProfileRequestDTO;
 import com.sam.helloworld.dto.request.PlayerProfileRequestDTO;
 import com.sam.helloworld.dto.response.ResponseDTO;
 import com.sam.helloworld.model.PlayerProfile;
 import com.sam.helloworld.service.PlayerProfileService;
+import com.sam.helloworld.util.Transformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,29 +21,32 @@ public class PlayerProfileController {
 
 
     /**
-     *
      * Creates player and adds the profile to DB
+     *
      * @param playerProfileRequestDTO accepts playerId Optional( name, totalRuns, totalWickets)
      * @return ResponseDTO
      */
     @PostMapping("/add")
-    public ResponseDTO addPlayer(@RequestBody PlayerProfileRequestDTO playerProfileRequestDTO){
+    public ResponseDTO addPlayer(@RequestBody PlayerProfileRequestDTO playerProfileRequestDTO) {
 
-        PlayerProfile addedPlayer = playerProfileService.addPlayer(playerProfileRequestDTO);
-        ResponseDTO responseDTO = new ResponseDTO<PlayerProfile>(true, 200, false,"", addedPlayer );
+        PlayerProfile playerProfile = Transformer.convertToPlayerProfile(playerProfileRequestDTO);
+        PlayerProfile addedPlayer = playerProfileService.addPlayer(playerProfile);
+        ResponseDTO responseDTO = new ResponseDTO<PlayerProfile>(true, 200, false, "", addedPlayer);
         return responseDTO;
     }
 
 
-    //TODO: Change params to RequestDTO
     /**
      * Bulk create operation
-     * @param playersList takes a list of PlayerProfile object
+     *
+     * @param listPlayerProfileRequestDTO takes a JSON object that has list of PlayerProfile under "playerProfiles"
      * @return Response DTO
      */
 
     @PostMapping("/addMany")
-    public ResponseDTO addManyPlayers(@RequestBody List<PlayerProfile> playersList){
+    public ResponseDTO addManyPlayers(@RequestBody ListPlayerProfileRequestDTO listPlayerProfileRequestDTO) {
+
+        List<PlayerProfile> playersList = Transformer.convertToListPlayerProfile(listPlayerProfileRequestDTO);
 
         Collection<PlayerProfile> listOfPlayers = playerProfileService.addPlayers(playersList);
 
@@ -55,11 +60,12 @@ public class PlayerProfileController {
 
     /**
      * Get a specific player and all of its details using playerId
+     *
      * @param playerId Path variable
      * @return ResponseDTO's data field to have PlayerProfile Object
      */
     @GetMapping("/search/{playerId}")
-    public ResponseDTO getPlayer(@PathVariable int playerId){
+    public ResponseDTO getPlayer(@PathVariable int playerId) {
         PlayerProfile searchedPlayer = playerProfileService.getPlayer(playerId);
 
         ResponseDTO responseDTO = new ResponseDTO<>();
@@ -70,13 +76,14 @@ public class PlayerProfileController {
 
     /**
      * Search for player(s) using name.
+     *
      * @param name RequestParam
      * @return ResponseDTO. Returns a single or multiple Players with the same name.
      */
 
     @GetMapping("/search")
-    public ResponseDTO<PlayerProfile> searchPlayers(@RequestParam String name){
-        ResponseDTO responseDTO = new ResponseDTO<PlayerProfile>(true, 200, false );
+    public ResponseDTO<PlayerProfile> searchPlayers(@RequestParam String name) {
+        ResponseDTO responseDTO = new ResponseDTO<PlayerProfile>(true, 200, false);
 
         List<PlayerProfile> listOfPlayers = playerProfileService.searchPlayers(name);
         responseDTO.setData(listOfPlayers);
@@ -86,12 +93,13 @@ public class PlayerProfileController {
 
     /**
      * Returns the list of all Players.
+     *
      * @return ResponseDTO.data = List of PlayerProfiles
      */
 
     @GetMapping("/all")
-    public ResponseDTO getAllPlayers(){
-        ResponseDTO responseDTO = new ResponseDTO<PlayerProfile>(true, 200, false );
+    public ResponseDTO getAllPlayers() {
+        ResponseDTO responseDTO = new ResponseDTO<PlayerProfile>(true, 200, false);
 
         List<PlayerProfile> allPlayers = playerProfileService.getAllPlayers();
 
@@ -103,13 +111,14 @@ public class PlayerProfileController {
 
     /**
      * Update the name of the player using playerId
-     * @param id RequestParam
+     *
+     * @param id      RequestParam
      * @param newName RequestParam
-     * @return  ResponseDTO.data returns updated PlayerProfile
+     * @return ResponseDTO.data returns updated PlayerProfile
      */
 
     @PutMapping("/updateName")
-    public ResponseDTO updatePlayerProfile(@RequestParam int id, @RequestParam String newName){
+    public ResponseDTO updatePlayerProfile(@RequestParam int id, @RequestParam String newName) {
 
         ResponseDTO responseDTO = new ResponseDTO();
         responseDTO.setSuccessObj();
@@ -123,12 +132,13 @@ public class PlayerProfileController {
 
     /**
      * Deletes the player with playerId
+     *
      * @param playerId Request
      * @return ResponseDTO.data returns deleted PlayerProfile
      */
 
     @DeleteMapping("/delete")
-    public ResponseDTO deletePlayer(@RequestParam int playerId){
+    public ResponseDTO deletePlayer(@RequestParam int playerId) {
 
         PlayerProfile deletedPlayer = playerProfileService.deletePlayer(playerId);
         ResponseDTO responseDTO = new ResponseDTO();

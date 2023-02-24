@@ -40,7 +40,7 @@ public class PlayerProfileRepositoryImpl implements PlayerProfileRepository {
     }
 
     public List<PlayerProfile> searchPlayers(String str){
-        Query query = new Query().addCriteria(Criteria.where("name").regex(str));
+        Query query = new Query().addCriteria(Criteria.where("name").is(str));
         return mongoTemplate.find(query, PlayerProfile.class);
     }
 

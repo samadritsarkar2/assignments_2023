@@ -20,18 +20,18 @@ public class PlayerProfileService {
     private PlayerProfileRepository playerProfileRepository;
 
 
-    public PlayerProfile addPlayer(PlayerProfileRequestDTO newPlayer){
+    public PlayerProfile addPlayer(PlayerProfile newPlayer) {
 
-        PlayerProfile playerProfile = Transformer.convertToPlayerProfile(newPlayer);
 
-        return playerProfileRepository.addPlayer(playerProfile);
+        return playerProfileRepository.addPlayer(newPlayer);
 
     }
-    public Collection<PlayerProfile> addPlayers(List<PlayerProfile> playersList){
+
+    public Collection<PlayerProfile> addPlayers(List<PlayerProfile> playersList) {
         return playerProfileRepository.addPlayers(playersList);
     }
 
-    public PlayerProfile getPlayer(int playerId){
+    public PlayerProfile getPlayer(int playerId) {
 
         return playerProfileRepository.getPlayer(playerId);
     }
@@ -41,15 +41,15 @@ public class PlayerProfileService {
         return listOfPlayers;
     }
 
-    public List<PlayerProfile> getAllPlayers(){
+    public List<PlayerProfile> getAllPlayers() {
         return playerProfileRepository.getAllPlayers();
     }
 
     public PlayerProfile updatePlayerName(int playerId, String newName) {
-        return playerProfileRepository.updatePlayerName(playerId,newName);
+        return playerProfileRepository.updatePlayerName(playerId, newName);
     }
 
-    public PlayerProfile deletePlayer(int playerId){
+    public PlayerProfile deletePlayer(int playerId) {
         return playerProfileRepository.deletePlayer(playerId);
     }
 

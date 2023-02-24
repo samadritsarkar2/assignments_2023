@@ -1,7 +1,6 @@
 package com.sam.helloworld;
 
 
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -11,10 +10,10 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 public class HelloWorldApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(HelloWorldApplication.class, args);
+    public static void main(String[] args) {
+        SpringApplication.run(HelloWorldApplication.class, args);
 
 
-	}
+    }
 
 }

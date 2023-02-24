@@ -1,7 +1,11 @@
 package com.sam.helloworld.util;
 
+import com.sam.helloworld.dto.request.ListPlayerProfileRequestDTO;
 import com.sam.helloworld.dto.request.PlayerProfileRequestDTO;
 import com.sam.helloworld.model.PlayerProfile;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Transformer {
@@ -25,4 +29,16 @@ public class Transformer {
 
         return createdPlayerProfile;
     }
+
+    public static List<PlayerProfile> convertToListPlayerProfile(ListPlayerProfileRequestDTO listPlayerProfileRequestDTO){
+        List<PlayerProfile> playerProfileList = new ArrayList<>();
+        List<PlayerProfileRequestDTO> playerProfileRequestDTOS = listPlayerProfileRequestDTO.getPlayerProfiles();
+
+        for (PlayerProfileRequestDTO playerProfileRequestDTO : playerProfileRequestDTOS )
+        {
+            playerProfileList.add(Transformer.convertToPlayerProfile(playerProfileRequestDTO));
+        }
+        return playerProfileList;
+    }
+
 }
