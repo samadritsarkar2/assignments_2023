@@ -112,17 +112,17 @@ public class PlayerProfileController {
     /**
      * Update the name of the player using playerId
      *
-     * @param id      RequestParam
+     * @param playerId      RequestParam
      * @param newName RequestParam
      * @return ResponseDTO.data returns updated PlayerProfile
      */
 
     @PutMapping("/updateName")
-    public ResponseDTO updatePlayerProfile(@RequestParam int id, @RequestParam String newName) {
+    public ResponseDTO updatePlayerProfile(@RequestParam int playerId, @RequestParam String newName) {
 
         ResponseDTO responseDTO = new ResponseDTO();
         responseDTO.setSuccessObj();
-        PlayerProfile updatedPlayer = playerProfileService.updatePlayerName(id, newName);
+        PlayerProfile updatedPlayer = playerProfileService.updatePlayerName(playerId, newName);
         responseDTO.setData(updatedPlayer);
 
         return responseDTO;
