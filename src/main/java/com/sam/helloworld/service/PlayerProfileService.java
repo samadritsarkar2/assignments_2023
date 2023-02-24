@@ -1,8 +1,10 @@
 package com.sam.helloworld.service;
 
+import com.sam.helloworld.dto.request.PlayerProfileRequestDTO;
 import com.sam.helloworld.model.PlayerProfile;
 import com.sam.helloworld.repository.PlayerProfileRepository;
 import com.sam.helloworld.repository.PlayerProfileRepositoryImpl;
+import com.sam.helloworld.util.Transformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,9 +20,11 @@ public class PlayerProfileService {
     private PlayerProfileRepository playerProfileRepository;
 
 
-    public PlayerProfile addPlayer(PlayerProfile newPlayer){
+    public PlayerProfile addPlayer(PlayerProfileRequestDTO newPlayer){
 
-        return playerProfileRepository.addPlayer(newPlayer);
+        PlayerProfile playerProfile = Transformer.convertToPlayerProfile(newPlayer);
+
+        return playerProfileRepository.addPlayer(playerProfile);
 
     }
     public Collection<PlayerProfile> addPlayers(List<PlayerProfile> playersList){

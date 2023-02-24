@@ -1,4 +1,4 @@
-package com.sam.helloworld.dto;
+package com.sam.helloworld.dto.response;
 
 
 import lombok.*;
