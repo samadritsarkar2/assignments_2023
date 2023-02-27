@@ -29,4 +29,10 @@ public class ResponseDTO<T> {
 
     }
 
+    public void setErrorObj (){
+        this.success = false;
+        this.error = true;
+        this.statusCode = 500;
+    }
+
 }

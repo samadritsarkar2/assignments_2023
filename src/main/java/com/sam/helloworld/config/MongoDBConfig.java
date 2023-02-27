@@ -16,6 +16,8 @@ public class MongoDBConfig extends AbstractMongoClientConfiguration {
     @Value("${spring.data.mongodb.uri}")
     private String mongoURI;
 
+
+
     @Value("${spring.data.mongodb.database}")
     private String db;
 
@@ -29,7 +31,7 @@ public class MongoDBConfig extends AbstractMongoClientConfiguration {
     public MongoClient mongoClient(){
         MongoClient mongoClient = MongoClients.create(mongoURI);
         ListDatabasesIterable<Document> databases = mongoClient.listDatabases();
-        databases.forEach(System.out::println);
+//        databases.forEach(System.out::println);
         return mongoClient;
     }
 

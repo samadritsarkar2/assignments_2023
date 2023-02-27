@@ -1,6 +1,8 @@
 package com.sam.helloworld.model;
 
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -11,6 +13,10 @@ public class PlayerProfile {
 
     @Id
     private int playerId;
+
+    @Size(min = 3, max = 50, message = "Name must be withing 3 to 50 characters"
+    )
+    @NotNull(message = "User's first name must not be null")
     private String name;
 
     private int totalRuns;

@@ -1,5 +1,6 @@
 package com.sam.helloworld.repository;
 
+import com.mongodb.MongoException;
 import com.sam.helloworld.model.PlayerProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -21,7 +22,7 @@ public class PlayerProfileRepositoryImpl implements PlayerProfileRepository {
     private MongoTemplate mongoTemplate;
 
 
-    public PlayerProfile addPlayer(PlayerProfile newPlayer){
+    public PlayerProfile addPlayer(PlayerProfile newPlayer) throws MongoException {
         return mongoTemplate.insert(newPlayer);
     }
 
@@ -49,7 +50,8 @@ public class PlayerProfileRepositoryImpl implements PlayerProfileRepository {
         Query query = new Query().addCriteria(Criteria.where("playerId").is(playerId));
         Update updateName = new Update().set("name",newName);
 
-        return mongoTemplate.findAndModify(query, updateName, new FindAndModifyOptions().returnNew(true), PlayerProfile.class);
+        return mongoTemplate.findAndModify(query, updateName, new FindAndModifyOptions().returnNew(true),
+                PlayerProfile.class);
 
     }
 

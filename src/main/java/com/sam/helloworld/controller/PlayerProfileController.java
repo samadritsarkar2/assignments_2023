@@ -7,6 +7,7 @@ import com.sam.helloworld.model.PlayerProfile;
 import com.sam.helloworld.service.PlayerProfileService;
 import com.sam.helloworld.util.Transformer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -19,7 +20,6 @@ public class PlayerProfileController {
     @Autowired
     PlayerProfileService playerProfileService;
 
-
     /**
      * Creates player and adds the profile to DB
      *
@@ -30,8 +30,17 @@ public class PlayerProfileController {
     public ResponseDTO addPlayer(@RequestBody PlayerProfileRequestDTO playerProfileRequestDTO) {
 
         PlayerProfile playerProfile = Transformer.convertToPlayerProfile(playerProfileRequestDTO);
-        PlayerProfile addedPlayer = playerProfileService.addPlayer(playerProfile);
-        ResponseDTO responseDTO = new ResponseDTO<PlayerProfile>(true, 200, false, "", addedPlayer);
+        ResponseDTO responseDTO = new ResponseDTO<PlayerProfile>();
+
+        try{
+            PlayerProfile addedPlayer = playerProfileService.addPlayer(playerProfile);
+            responseDTO.setSuccessObj();
+            responseDTO.setData(addedPlayer);
+        }catch (Exception ex) {
+            System.out.println(ex.getLocalizedMessage());
+                responseDTO.setErrorObj();
+                responseDTO.setErrMsg("Already Exists");
+        }
         return responseDTO;
     }
 

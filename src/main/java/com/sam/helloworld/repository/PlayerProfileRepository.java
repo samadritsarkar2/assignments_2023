@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface PlayerProfileRepository {
 
-    public PlayerProfile addPlayer(PlayerProfile newPlayer);
+    public PlayerProfile addPlayer(PlayerProfile newPlayer) ;
 
     public Collection<PlayerProfile> addPlayers(List<PlayerProfile> newPlayer);
 

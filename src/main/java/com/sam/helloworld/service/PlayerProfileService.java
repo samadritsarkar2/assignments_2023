@@ -6,6 +6,7 @@ import com.sam.helloworld.repository.PlayerProfileRepository;
 import com.sam.helloworld.repository.PlayerProfileRepositoryImpl;
 import com.sam.helloworld.util.Transformer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -13,15 +14,19 @@ import java.util.List;
 
 
 @Service
+@ConfigurationProperties(prefix = "player.name")
 public class PlayerProfileService {
 
 
     @Autowired
     private PlayerProfileRepository playerProfileRepository;
 
+    private String userName;
 
-    public PlayerProfile addPlayer(PlayerProfile newPlayer) {
 
+    public PlayerProfile addPlayer(PlayerProfile newPlayer)  {
+
+        System.out.println(userName);
 
         return playerProfileRepository.addPlayer(newPlayer);
 
