@@ -15,7 +15,10 @@ public class Transformer {
     public static PlayerProfile convertToPlayerProfile(PlayerProfileRequestDTO playerProfileRequestDTO){
         PlayerProfile createdPlayerProfile = new PlayerProfile();
 
-        createdPlayerProfile.setPlayerId(playerProfileRequestDTO.getPlayerId());
+        if(playerProfileRequestDTO.getEmail() != null)
+        {
+            createdPlayerProfile.setEmail(playerProfileRequestDTO.getEmail());
+        }
 
         if(playerProfileRequestDTO.getName() != null)
             createdPlayerProfile.setName(playerProfileRequestDTO.getName());

@@ -74,7 +74,7 @@ public class PlayerProfileController {
      * @return ResponseDTO's data field to have PlayerProfile Object
      */
     @GetMapping("/search/{playerId}")
-    public ResponseDTO getPlayer(@PathVariable int playerId) {
+    public ResponseDTO getPlayer(@PathVariable String playerId) {
         PlayerProfile searchedPlayer = playerProfileService.getPlayer(playerId);
 
         ResponseDTO responseDTO = new ResponseDTO<>();
