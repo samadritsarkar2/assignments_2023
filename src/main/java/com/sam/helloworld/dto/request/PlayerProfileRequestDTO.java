@@ -13,8 +13,8 @@ public class PlayerProfileRequestDTO {
 
 
     @NonNull
-    private Integer playerId;
-
+    private String playerId;
+    private String email;
     private String name;
 
     private int totalRuns;

@@ -31,7 +31,7 @@ public class PlayerProfileRepositoryImpl implements PlayerProfileRepository {
        return mongoTemplate.insertAll(newPlayers);
     }
 
-    public PlayerProfile getPlayer(int playerId){
+    public PlayerProfile getPlayer(String playerId){
         Query query = new Query().addCriteria(Criteria.where("playerId").is(playerId));
         return mongoTemplate.findOne(query, PlayerProfile.class);
     }

@@ -13,7 +13,7 @@ public interface PlayerProfileRepository {
 
     public Collection<PlayerProfile> addPlayers(List<PlayerProfile> newPlayer);
 
-    public PlayerProfile getPlayer(int playerId);
+    public PlayerProfile getPlayer(String playerId);
     public List<PlayerProfile> getAllPlayers();
 
     public List<PlayerProfile> searchPlayers(String str);

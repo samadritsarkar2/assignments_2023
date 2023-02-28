@@ -36,7 +36,7 @@ public class PlayerProfileService {
         return playerProfileRepository.addPlayers(playersList);
     }
 
-    public PlayerProfile getPlayer(int playerId) {
+    public PlayerProfile getPlayer(String playerId) {
 
         return playerProfileRepository.getPlayer(playerId);
     }

@@ -35,6 +35,11 @@ public class MongoDBConfig extends AbstractMongoClientConfiguration {
         return mongoClient;
     }
 
+    @Override
+    public boolean autoIndexCreation()
+    {
+        return true;
+    }
 
 
 }
