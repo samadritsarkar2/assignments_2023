@@ -156,4 +156,15 @@ public class PlayerProfileController {
         return responseDTO;
     }
 
+    @PostMapping("/test")
+    public ResponseDTO test(){
+            playerProfileService.test();
+
+//          List<PlayerProfile> updatedResults =  playerProfileService.getAllPlayers();
+          ResponseDTO responseDTO = new ResponseDTO<>();
+          responseDTO.setSuccessObj();
+//          responseDTO.setData(updatedResults);
+          return responseDTO;
+    }
+
 }

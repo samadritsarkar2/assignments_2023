@@ -14,9 +14,11 @@ public class PlayerProfile {
     @Id
     private int playerId;
 
+
+
     @Size(min = 3, max = 50, message = "Name must be withing 3 to 50 characters"
     )
-    @NotNull(message = "User's first name must not be null")
+//    @NotNull(message = "User's first name must not be null")
     private String name;
 
     private int totalRuns;

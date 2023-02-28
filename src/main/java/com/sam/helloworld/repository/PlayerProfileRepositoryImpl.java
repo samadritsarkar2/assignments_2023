@@ -60,4 +60,25 @@ public class PlayerProfileRepositoryImpl implements PlayerProfileRepository {
 
         return mongoTemplate.findAndRemove(query, PlayerProfile.class);
     }
+
+    public void test(){
+        // Increment a particular field by value
+//       Query emptyQuery = new Query();
+//        Update update = new Update().inc(field, value);
+//        mongoTemplate.updateMulti(emptyQuery, update, PlayerProfile.class);
+
+        // Check for null values
+//        Query query =
+//                new Query().addCriteria(Criteria.where("totalRuns").isNull());
+//
+////        List<PlayerProfile> faultyProfiles = mongoTemplate.find(query, PlayerProfile.class);
+//        System.out.println(mongoTemplate.find(query, PlayerProfile.class));
+
+        //
+
+
+
+
+
+    }
 }

@@ -22,4 +22,5 @@ public interface PlayerProfileRepository {
 
     public PlayerProfile deletePlayer(int playerId);
 
+    public void test();
 }
