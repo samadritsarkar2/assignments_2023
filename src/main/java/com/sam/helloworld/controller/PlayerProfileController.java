@@ -156,15 +156,23 @@ public class PlayerProfileController {
         return responseDTO;
     }
 
-    @PostMapping("/test")
-    public ResponseDTO test(){
-            playerProfileService.test();
+    /**
+     * Increments field's value by value for all the players
+     * @param field String
+     * @param value int
+     * @return
+     */
+    @PostMapping("/increment")
+    public ResponseDTO increment(@RequestParam String field, @RequestParam int value){
+            playerProfileService.increment(field,value);
 
-//          List<PlayerProfile> updatedResults =  playerProfileService.getAllPlayers();
+          List<PlayerProfile> updatedResults =  playerProfileService.getAllPlayers();
           ResponseDTO responseDTO = new ResponseDTO<>();
           responseDTO.setSuccessObj();
-//          responseDTO.setData(updatedResults);
+          responseDTO.setData(updatedResults);
           return responseDTO;
     }
+
+
 
 }

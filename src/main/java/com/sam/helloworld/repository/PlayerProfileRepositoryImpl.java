@@ -61,11 +61,11 @@ public class PlayerProfileRepositoryImpl implements PlayerProfileRepository {
         return mongoTemplate.findAndRemove(query, PlayerProfile.class);
     }
 
-    public void test(){
+    public void increment(String field, int value){
         // Increment a particular field by value
-//       Query emptyQuery = new Query();
-//        Update update = new Update().inc(field, value);
-//        mongoTemplate.updateMulti(emptyQuery, update, PlayerProfile.class);
+       Query emptyQuery = new Query();
+        Update update = new Update().inc(field, value);
+        mongoTemplate.updateMulti(emptyQuery, update, PlayerProfile.class);
 
         // Check for null values
 //        Query query =

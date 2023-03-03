@@ -22,5 +22,5 @@ public interface PlayerProfileRepository {
 
     public PlayerProfile deletePlayer(int playerId);
 
-    public void test();
+    public void increment(String field, int value);
 }

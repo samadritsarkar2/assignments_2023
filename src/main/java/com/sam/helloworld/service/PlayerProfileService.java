@@ -50,7 +50,7 @@ public class PlayerProfileService {
         return playerProfileRepository.deletePlayer(playerId);
     }
 
-    public void test() {
-         playerProfileRepository.test();
+    public void increment(String field, int value) {
+         playerProfileRepository.increment(field,value);
     }
 }
