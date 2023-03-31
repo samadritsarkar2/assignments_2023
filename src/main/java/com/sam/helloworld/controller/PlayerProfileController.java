@@ -64,6 +64,7 @@ public class PlayerProfileController {
         responseDTO.setData(listOfPlayers);
 
         return responseDTO;
+
     }
 
 
