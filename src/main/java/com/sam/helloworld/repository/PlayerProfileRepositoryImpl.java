@@ -22,40 +22,40 @@ public class PlayerProfileRepositoryImpl implements PlayerProfileRepository {
     private MongoTemplate mongoTemplate;
 
 
-    public PlayerProfile addPlayer(PlayerProfile newPlayer) throws MongoException {
+    public PlayerProfile create(PlayerProfile newPlayer) throws MongoException {
         return mongoTemplate.insert(newPlayer);
     }
 
-    public Collection<PlayerProfile> addPlayers(List<PlayerProfile> newPlayers){
+    public Collection<PlayerProfile> createBulk(List<PlayerProfile> newPlayers){
 
        return mongoTemplate.insertAll(newPlayers);
     }
 
-    public PlayerProfile getPlayer(String playerId){
+    public PlayerProfile getPlayerProfileById(String playerId){
         Query query = new Query().addCriteria(Criteria.where("playerId").is(playerId));
         return mongoTemplate.findOne(query, PlayerProfile.class);
     }
 
-    public List<PlayerProfile> getAllPlayers(){
+    public List<PlayerProfile> getAllPlayerProfiles(){
         return mongoTemplate.findAll(PlayerProfile.class);
     }
 
-    public List<PlayerProfile> searchPlayers(String str){
+    public List<PlayerProfile> searchPlayerProfilesByName(String str){
         Query query = new Query().addCriteria(Criteria.where("name").is(str));
         return mongoTemplate.find(query, PlayerProfile.class);
     }
 
 
-    public PlayerProfile updatePlayerName(int playerId, String newName){
+    public PlayerProfile updatePlayerProfile(String playerId, String field, String newValue){
         Query query = new Query().addCriteria(Criteria.where("playerId").is(playerId));
-        Update updateName = new Update().set("name",newName);
+        Update updateField = new Update().set(field ,newValue);
 
-        return mongoTemplate.findAndModify(query, updateName, new FindAndModifyOptions().returnNew(true),
+        return mongoTemplate.findAndModify(query, updateField, new FindAndModifyOptions().returnNew(true),
                 PlayerProfile.class);
 
     }
 
-    public PlayerProfile deletePlayer(int playerId){
+    public PlayerProfile deletePlayerProfile(String playerId){
         Query query = new Query().addCriteria(Criteria.where("playerId").is(playerId));
 
         return mongoTemplate.findAndRemove(query, PlayerProfile.class);

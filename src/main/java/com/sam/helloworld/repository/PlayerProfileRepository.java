@@ -9,17 +9,17 @@ import java.util.List;
 @Repository
 public interface PlayerProfileRepository {
 
-    public PlayerProfile addPlayer(PlayerProfile newPlayer) ;
+    public PlayerProfile create(PlayerProfile newPlayer) ;
 
-    public Collection<PlayerProfile> addPlayers(List<PlayerProfile> newPlayer);
+    public Collection<PlayerProfile> createBulk(List<PlayerProfile> newPlayer);
 
-    public PlayerProfile getPlayer(String playerId);
-    public List<PlayerProfile> getAllPlayers();
+    public PlayerProfile getPlayerProfileById(String playerId);
+    public List<PlayerProfile> getAllPlayerProfiles();
 
-    public List<PlayerProfile> searchPlayers(String str);
+    public List<PlayerProfile> searchPlayerProfilesByName(String str);
 
-    public PlayerProfile updatePlayerName(int playerId, String newName);
+    public PlayerProfile updatePlayerProfile(String playerId, String field, String value);
 
-    public PlayerProfile deletePlayer(int playerId);
+    public PlayerProfile deletePlayerProfile(String playerId);
 
 }
