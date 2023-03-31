@@ -1,10 +1,8 @@
 package com.sam.helloworld.service;
 
-import com.sam.helloworld.dto.request.PlayerProfileRequestDTO;
+import com.sam.helloworld.dto.request.UpdatePlayerProfileRequestDTO;
 import com.sam.helloworld.model.PlayerProfile;
 import com.sam.helloworld.repository.PlayerProfileRepository;
-import com.sam.helloworld.repository.PlayerProfileRepositoryImpl;
-import com.sam.helloworld.util.Transformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
@@ -21,41 +19,42 @@ public class PlayerProfileService {
     @Autowired
     private PlayerProfileRepository playerProfileRepository;
 
-    private String userName;
 
 
-    public PlayerProfile addPlayer(PlayerProfile newPlayer)  {
 
-        System.out.println(userName);
+    public PlayerProfile create(PlayerProfile newPlayer)  {
 
-        return playerProfileRepository.addPlayer(newPlayer);
+        return playerProfileRepository.create(newPlayer);
 
     }
 
-    public Collection<PlayerProfile> addPlayers(List<PlayerProfile> playersList) {
-        return playerProfileRepository.addPlayers(playersList);
+    public Collection<PlayerProfile> createBulk(List<PlayerProfile> playersList) {
+        return playerProfileRepository.createBulk(playersList);
     }
 
-    public PlayerProfile getPlayer(String playerId) {
+    public PlayerProfile getPlayerProfileById(String playerId) {
 
-        return playerProfileRepository.getPlayer(playerId);
+        return playerProfileRepository.getPlayerProfileById(playerId);
     }
 
-    public List<PlayerProfile> searchPlayers(String str) {
-        List<PlayerProfile> listOfPlayers = playerProfileRepository.searchPlayers(str);
-        return listOfPlayers;
+    public List<PlayerProfile> searchPlayerProfilesByName(String str) {
+        List<PlayerProfile> listPlayerProfiles = playerProfileRepository.searchPlayerProfilesByName(str);
+        return listPlayerProfiles;
     }
 
-    public List<PlayerProfile> getAllPlayers() {
-        return playerProfileRepository.getAllPlayers();
+    public List<PlayerProfile> getAllPlayerProfiles() {
+        return playerProfileRepository.getAllPlayerProfiles();
     }
 
-    public PlayerProfile updatePlayerName(int playerId, String newName) {
-        return playerProfileRepository.updatePlayerName(playerId, newName);
+    public PlayerProfile updatePlayerProfile(UpdatePlayerProfileRequestDTO updatePlayerProfileRequestDTO) {
+        String playerId = updatePlayerProfileRequestDTO.getPlayerId();
+        String field = updatePlayerProfileRequestDTO.getField();
+        String newValue = updatePlayerProfileRequestDTO.getValue();
+        return playerProfileRepository.updatePlayerProfile(playerId, field, newValue);
     }
 
-    public PlayerProfile deletePlayer(int playerId) {
-        return playerProfileRepository.deletePlayer(playerId);
+    public PlayerProfile deletePlayerProfile(String playerId) {
+        return playerProfileRepository.deletePlayerProfile(playerId);
     }
 
 }
