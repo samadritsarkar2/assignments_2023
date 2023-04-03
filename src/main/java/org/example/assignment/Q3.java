@@ -1,25 +1,64 @@
 package org.example.assignment;
 
+
+import java.util.concurrent.Semaphore;
+
 public class Q3 {
 
+    private static Semaphore sem = new Semaphore(1);
+    private static int curr = 1;
 
-    public static void main(String[] args)
-    {
-        int limit = 20;
+    private static int limit = 20;
 
+    public static void main(String[] args) throws InterruptedException {
 
-        Runnable odd = () -> {
-            for(int i =1; i<= limit; i++)
-            {
-//                if(i%2!= 0)
-//                synchronized (){
-//                    System.out.println(i);
-//                }
+        Thread odd = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                while (curr <= limit)
+                {
+                    try {
+                        sem.acquire();
+                        if (curr % 2 != 0) {
+                            System.out.println(curr);
+                            curr++;
+                        }
+                        sem.release();
+                    }catch (Exception e)
+                    {
+
+                    }
+
+                }
             }
-        };
+        });
 
+        Thread even = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                while(curr <= limit)
+                {
+                    try {
+                        sem.acquire();
+                        if (curr % 2 == 0) {
+                            System.out.println(curr);
+                            curr++;
+                        }
+                        sem.release();
+                    }catch (Exception e)
+                    {
+
+                    }
+
+                }
+            }
+        });
+
+      odd.start();
+      even.start();
 
 
     }
-
 }
